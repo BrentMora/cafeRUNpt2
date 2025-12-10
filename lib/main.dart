@@ -4,6 +4,7 @@ import 'InventoryController.dart';
 import 'OrderController.dart';
 import 'inventory_view.dart';
 import 'order_view.dart';
+import 'modern_pos.dart'; // <-- new modern POS screen
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -21,8 +22,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => InventoryController(db)..loadInventory()),
-        ChangeNotifierProvider(create: (_) => OrderController(db)..loadOrders()),
+        ChangeNotifierProvider(
+            create: (_) => InventoryController(db)..loadInventory()),
+        ChangeNotifierProvider(
+            create: (_) => OrderController(db)..loadOrders()),
       ],
       child: MaterialApp(
         title: 'POS System',
@@ -45,17 +48,26 @@ class HomeScreen extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const InventoryView()));
-                },
-                child: const Text('Manage Inventory')),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const InventoryView()));
+              },
+              child: const Text('Manage Inventory'),
+            ),
             ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (_) => const OrderView()));
-                },
-                child: const Text('Manage Orders')),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const OrderView()));
+              },
+              child: const Text('Manage Orders'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const ModernPOS()));
+              },
+              child: const Text('Modern POS'),
+            ),
           ],
         ),
       ),
