@@ -44,6 +44,10 @@ class AppDatabase extends _$AppDatabase {
   // Orders
   Future<int> insertOrder(OrderTableCompanion entry) => into(orderTable).insert(entry);
 
+  Future<void> deleteInventory(int id) async {
+    await (delete(inventoryTable)..where((tbl) => tbl.id.equals(id))).go();
+  }
+
   Future<List<OrderTableData>> getAllOrders() => select(orderTable).get();
 }
 

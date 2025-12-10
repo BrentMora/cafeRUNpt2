@@ -20,6 +20,7 @@ class OrderController extends ChangeNotifier {
     required int quantity,
     required double unitPrice,
   }) async {
+    // Insert a new row for each instance (even if the same item)
     final entry = OrderTableCompanion(
       itemId: Value(itemId),
       quantity: Value(quantity),
@@ -30,6 +31,7 @@ class OrderController extends ChangeNotifier {
     await db.insertOrder(entry);
     await loadOrders();
   }
+
 
   // Fetch inventory for item selection
   Future<List<InventoryTableData>> getInventoryItems() => db.getAllInventory();

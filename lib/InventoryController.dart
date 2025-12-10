@@ -41,4 +41,10 @@ class InventoryController extends ChangeNotifier {
 
     await loadInventory();
   }
+
+  /// Deletes an inventory item by id
+  Future<void> deleteItem(int id) async {
+    await db.deleteInventory(id);
+    await loadInventory();
+  }
 }
