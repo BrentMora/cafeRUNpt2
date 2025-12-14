@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:drift/drift.dart';
 import 'app_database.dart';
 
 class OrderController extends ChangeNotifier {
@@ -11,7 +10,7 @@ class OrderController extends ChangeNotifier {
   List<OrderTableData> get orders => _orders;
 
   Future<void> loadOrders() async {
-    _orders = await db.getAllOrders();  // database operation called
+    _orders = await db.getAllOrders();
     notifyListeners();
   }
 
@@ -27,12 +26,10 @@ class OrderController extends ChangeNotifier {
       timestamp: Value(DateTime.now()),
     );
 
-    await db.insertOrder(entry);    // database operation called
+    await db.insertOrder(entry);
     await loadOrders();
   }
 
-
   // Fetch inventory for item selection
   Future<List<InventoryTableData>> getInventoryItems() => db.getAllInventory();
-                              // database operation called above
 }

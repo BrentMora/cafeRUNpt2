@@ -11,7 +11,7 @@ class InventoryController extends ChangeNotifier {
   List<InventoryTableData> get inventory => _inventory;
 
   Future<void> loadInventory() async {
-    _inventory = await db.getAllInventory();
+    _inventory = await db.getAllInventory();  // database operation called
     notifyListeners();
   }
 
@@ -34,9 +34,9 @@ class InventoryController extends ChangeNotifier {
     );
 
     if (id == null) {
-      await db.insertInventory(entry);
+      await db.insertInventory(entry);  // database operation called
     } else {
-      await db.updateInventory(id, entry);
+      await db.updateInventory(id, entry);  // database operation called
     }
 
     await loadInventory();
@@ -44,7 +44,7 @@ class InventoryController extends ChangeNotifier {
 
   /// Deletes an inventory item by id
   Future<void> deleteItem(int id) async {
-    await db.deleteInventory(id);
+    await db.deleteInventory(id);    // database operation called
     await loadInventory();
   }
 }

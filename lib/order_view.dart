@@ -34,7 +34,7 @@ class OrderView extends StatelessWidget {
                     (i) => i.id == order.itemId,
                     orElse: () => InventoryTableData(
                       id: 0,
-                      itemName: 'Deleted',
+                      itemName: 'Menu Item Name',
                       quantity: 0,
                       unit: '',
                       cost: 0,
